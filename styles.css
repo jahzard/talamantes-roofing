@@ -205,6 +205,11 @@ h3 {
 .hero-description {
   font-size:21px;
   letter-spacing:-.025em}
+.hero-tagline {
+  margin-bottom:8px;
+  font-size:21px;
+  font-weight:650;
+  letter-spacing:-.025em}
 .hero-actions {
   display:flex;
   align-items:center;
