@@ -202,7 +202,7 @@ menuButton.addEventListener("click", () => {
 });
 
 mobileNav.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
-const desktopQuery = window.matchMedia("(min-width: 1001px)");
+const desktopQuery = window.matchMedia("(min-width: 721px)");
 desktopQuery.addEventListener("change", event => { if (event.matches) closeMenu(); });
 
 document.querySelectorAll("[data-estimate]").forEach(button => {
