@@ -44,6 +44,15 @@ def check():
         assert next(a["lang"] for t, a in doc.tags if t == "html") == language, filename
         canonical = [a["href"] for t, a in doc.tags if t == "link" and a.get("rel") == "canonical"]
         assert canonical == [ORIGIN + url], (filename, canonical)
+        meta = {a.get("property", a.get("name")): a.get("content") for t, a in doc.tags if t == "meta"}
+        assert meta["og:url"] == canonical[0], filename
+        assert meta["og:type"] == "website" and meta["og:site_name"] == "Talamantes Roofing", filename
+        assert meta["og:image"] == meta["twitter:image"] == ORIGIN + "/assets/roof-hero.jpg", filename
+        assert meta["og:description"] == meta["twitter:description"] == meta["description"], filename
+        assert meta["og:title"] == meta["twitter:title"] and meta["og:title"], filename
+        assert meta["og:image:alt"] == meta["twitter:image:alt"] and meta["og:image:alt"], filename
+        assert meta["og:locale"] == ("es_US" if language == "es" else "en_US"), filename
+        assert meta["twitter:card"] == "summary_large_image", filename
         expected = {language: ORIGIN + url, "es" if language == "en" else "en": ORIGIN + alternate}
         alternates = {a["hreflang"]: a["href"] for t, a in doc.tags if t == "link" and a.get("rel") == "alternate"}
         assert all(alternates.get(lang) == target for lang, target in expected.items()), filename
@@ -102,6 +111,7 @@ def check():
             assert any(t == "a" and a.get("href") == service["slug"] + ".html" for t, a in docs[locale + "/"].tags), url
     print(f"PASS: {len(PAGES)} static language pages, reciprocal language links, and {checked} local links/assets.")
     print(f"PASS: sitemap lists all {len(PAGES)} canonical pages; robots.txt permits Googlebot and advertises the sitemap.")
+    print(f"PASS: Open Graph and large-image sharing tags are present in the initial HTML of all {len(PAGES)} pages.")
 
 
 if __name__ == "__main__":

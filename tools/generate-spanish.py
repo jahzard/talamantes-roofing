@@ -10,6 +10,7 @@ from html.parser import HTMLParser
 import json
 from pathlib import Path
 import re
+from share_metadata import add_share_metadata
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://talamantes-roofing.vercel.app"
@@ -117,7 +118,7 @@ def generate():
         parser.feed((ROOT / filename).read_text())
         parser.close()
         parser.flush_text()
-        (ROOT / "es" / filename).write_text("".join(parser.output))
+        (ROOT / "es" / filename).write_text(add_share_metadata("".join(parser.output)))
         print(f"Generated es/{filename}")
 
 

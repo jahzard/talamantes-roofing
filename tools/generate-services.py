@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
+from share_metadata import add_share_metadata
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://talamantes-roofing.vercel.app"
@@ -95,7 +96,7 @@ def render(service):
   </main>
 
 '''
-    (ROOT / f'{slug}.html').write_text(head + '<body>' + chrome + main + footer)
+    (ROOT / f'{slug}.html').write_text(add_share_metadata(head + '<body>' + chrome + main + footer))
     print(f'Generated {slug}.html')
 
 

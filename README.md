@@ -10,6 +10,7 @@ For a local server, run `python3 -m http.server 8000 --bind 127.0.0.1` from this
 - All eight services, followed by Areas Served and then the benefits section.
 - Dedicated roof replacement, roof repair, flat roofing, and commercial roofing pages in both languages, linked from the matching homepage cards. Each includes relevant project photos, a service overview, process, FAQs, related services, and estimate links.
 - Phone links for 818-395-8754.
+- Link previews use Open Graph and large-image Twitter/X metadata in the initial HTML on all twelve pages, with localized titles, descriptions, and the approved homepage roof image at an absolute public HTTPS URL.
 - Free Estimate buttons that open an accessible contact dialog. They do not submit data; the next step is a call.
 - Mobile navigation, keyboard support, reduced-motion support, and locally stored images.
 - Top and bottom language links connect complete English and Spanish pages. Spanish content, metadata, navigation, testimonials, accessibility labels, and gallery captions are present in the HTML, including when JavaScript is disabled. Each URL always serves its own language, independently of browser settings or past preferences.
@@ -26,6 +27,7 @@ For a local server, run `python3 -m http.server 8000 --bind 127.0.0.1` from this
 - `es/index.html` and `es/past-work.html`: complete Spanish pages, with shared styles, scripts, and assets.
 - `roof-replacement.html`, `roof-repair.html`, `flat-roofing.html`, `commercial-roofing.html`: English service pages, with matching files in `es/`.
 - `tools/services.json` and `tools/generate-services.py`: bilingual service content and its static-page generator. Run `python3 tools/generate-services.py`, then the Spanish generator and localization checks after changing service content or shared page chrome.
+- `tools/share_metadata.py`: refreshes sharing metadata from each page's title, description, canonical URL, and language. Run it after editing homepage/gallery metadata. The service and Spanish generators also use this helper automatically.
 - `tools/generate-spanish.py`: generates the Spanish pages from the English HTML and the translation dictionary in `script.js`. After changing the English pages or translations, run `python3 tools/generate-spanish.py`, then `python3 tools/check-localization.py`, and commit the generated HTML too. No build step is needed for hosting.
 - `assets/`: generated homepage roof photographs and favicon. The homepage hero and storm images are illustrative.
 - `assets/projects/`: real project photos and browser-ready video clips selected from the supplied `Example Work` folder. These copies are optimized and the supplied originals are intact. Video highlights are silent and do not autoplay.
