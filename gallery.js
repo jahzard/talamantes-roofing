@@ -40,10 +40,6 @@ photoDialog.addEventListener("click", event => {
       event.clientY < bounds.top || event.clientY > bounds.bottom)) photoDialog.close();
 });
 photoDialog.addEventListener("close", () => document.body.classList.remove("modal-open"));
-document.addEventListener("languagechange", () => {
-  if (photoDialog.open) showPhoto(activePhoto);
-});
-
 // Keep the page quiet and avoid multiple clips playing at once.
 document.querySelectorAll("video").forEach(video => {
   video.addEventListener("play", () => {

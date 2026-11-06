@@ -1,6 +1,6 @@
 "use strict";
 
-// Spanish translations are bundled locally; no external translation service is needed.
+// Shared Spanish copy for static-page generation and gallery/menu interactions.
 const spanishCopy = {
   "Skip to content": "Saltar al contenido",
   "Services": "Servicios",
@@ -130,59 +130,11 @@ const spanishCopy = {
   "— Garret Cheves, Homeowner": "— Garret Cheves, Propietario",
   "Serving Southern California": "Al servicio del sur de California"
 };
-let currentLanguage = "en";
-const languageStorageKey = "talamantes-language";
+const currentLanguage = document.documentElement.lang === "es" ? "es" : "en";
 
 function translate(english) {
   return currentLanguage === "es" ? (spanishCopy[english] || english) : english;
 }
-
-// Bind existing text nodes once, preserving icons, line breaks, links, and event handlers.
-const textBindings = [];
-const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-while (walker.nextNode()) {
-  const node = walker.currentNode;
-  if (node.parentElement.closest("script, style, svg, [data-language-toggle], #language-status")) continue;
-  const original = node.nodeValue;
-  const english = original.trim();
-  if (Object.hasOwn(spanishCopy, english)) {
-    textBindings.push({ node, original, english });
-  }
-}
-const attributeBindings = [...document.querySelectorAll("[aria-label]")]
-  .filter(element => !element.matches(".menu-toggle"))
-  .map(element => ({ element, english: element.getAttribute("aria-label") }));
-const imageBindings = [...document.querySelectorAll("img[alt]")]
-  .map(element => ({ element, english: element.alt }));
-const englishTitle = document.title;
-const description = document.querySelector('meta[name="description"]');
-const englishDescription = description.content;
-
-function setLanguage(language, announce = true) {
-  currentLanguage = language === "es" ? "es" : "en";
-  document.documentElement.lang = currentLanguage;
-  closeMenu();
-  textBindings.forEach(({ node, original, english }) => {
-    node.nodeValue = currentLanguage === "es" ? original.replace(english, spanishCopy[english]) : original;
-  });
-  attributeBindings.forEach(({ element, english }) => element.setAttribute("aria-label", translate(english)));
-  imageBindings.forEach(({ element, english }) => { element.alt = translate(english); });
-  document.title = translate(englishTitle);
-  description.content = translate(englishDescription);
-  menuButton.setAttribute("aria-label", translate(mobileNav.hidden ? "Open navigation" : "Close navigation"));
-  document.querySelectorAll("[data-language-toggle]").forEach(button => {
-    button.textContent = currentLanguage === "en" ? "Se Habla Español" : "View in English";
-    button.lang = currentLanguage === "en" ? "es" : "en";
-    button.setAttribute("aria-label", currentLanguage === "en" ? "Se Habla Español — cambiar a español" : "View this page in English");
-  });
-  if (announce) {
-    document.querySelector("#language-status").textContent = currentLanguage === "es"
-      ? "La página ahora está en español." : "The page is now in English.";
-  }
-  document.dispatchEvent(new Event("languagechange"));
-  try { localStorage.setItem(languageStorageKey, currentLanguage); } catch { /* Storage can be unavailable in private or file previews. */ }
-}
-
 
 const menuButton = document.querySelector(".menu-toggle");
 const mobileNav = document.querySelector("#mobile-nav");
@@ -230,10 +182,4 @@ document.addEventListener("keydown", event => {
   }
 });
 
-// Both language controls stay synchronized, and a saved preference survives reloads.
-document.querySelectorAll("[data-language-toggle]").forEach(button => {
-  button.addEventListener("click", () => setLanguage(currentLanguage === "en" ? "es" : "en"));
-});
-let savedLanguage = "en";
-try { savedLanguage = localStorage.getItem(languageStorageKey) || "en"; } catch { /* Use English by default. */ }
-setLanguage(savedLanguage, false);
+// Language controls are ordinary links to complete, separately addressable pages.

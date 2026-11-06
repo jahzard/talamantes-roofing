@@ -879,6 +879,9 @@ dialog .button {
   justify-content: flex-end;
 }
 .language-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
   border-radius: 4px;
   padding: 8px 3px;
