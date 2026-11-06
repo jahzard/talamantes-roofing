@@ -1,15 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version='1.0' encoding='utf-8'?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://talamantes-roofing.vercel.app/</loc>
-  </url>
-  <url>
-    <loc>https://talamantes-roofing.vercel.app/past-work.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talamantes-roofing.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://talamantes-roofing.vercel.app/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talamantes-roofing.vercel.app/" />
   </url>
   <url>
     <loc>https://talamantes-roofing.vercel.app/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talamantes-roofing.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://talamantes-roofing.vercel.app/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talamantes-roofing.vercel.app/" />
+  </url>
+  <url>
+    <loc>https://talamantes-roofing.vercel.app/past-work.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talamantes-roofing.vercel.app/past-work.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://talamantes-roofing.vercel.app/es/past-work.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talamantes-roofing.vercel.app/past-work.html" />
   </url>
   <url>
     <loc>https://talamantes-roofing.vercel.app/es/past-work.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talamantes-roofing.vercel.app/past-work.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://talamantes-roofing.vercel.app/es/past-work.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talamantes-roofing.vercel.app/past-work.html" />
+  </url>
+  <url>
+    <loc>https://talamantes-roofing.vercel.app/roof-replacement.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talamantes-roofing.vercel.app/roof-replacement.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://talamantes-roofing.vercel.app/es/roof-replacement.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talamantes-roofing.vercel.app/roof-replacement.html" />
+  </url>
+  <url>
+    <loc>https://talamantes-roofing.vercel.app/es/roof-replacement.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talamantes-roofing.vercel.app/roof-replacement.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://talamantes-roofing.vercel.app/es/roof-replacement.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talamantes-roofing.vercel.app/roof-replacement.html" />
+  </url>
+  <url>
+    <loc>https://talamantes-roofing.vercel.app/roof-repair.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talamantes-roofing.vercel.app/roof-repair.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://talamantes-roofing.vercel.app/es/roof-repair.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talamantes-roofing.vercel.app/roof-repair.html" />
+  </url>
+  <url>
+    <loc>https://talamantes-roofing.vercel.app/es/roof-repair.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talamantes-roofing.vercel.app/roof-repair.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://talamantes-roofing.vercel.app/es/roof-repair.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talamantes-roofing.vercel.app/roof-repair.html" />
+  </url>
+  <url>
+    <loc>https://talamantes-roofing.vercel.app/flat-roofing.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talamantes-roofing.vercel.app/flat-roofing.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://talamantes-roofing.vercel.app/es/flat-roofing.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talamantes-roofing.vercel.app/flat-roofing.html" />
+  </url>
+  <url>
+    <loc>https://talamantes-roofing.vercel.app/es/flat-roofing.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talamantes-roofing.vercel.app/flat-roofing.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://talamantes-roofing.vercel.app/es/flat-roofing.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talamantes-roofing.vercel.app/flat-roofing.html" />
+  </url>
+  <url>
+    <loc>https://talamantes-roofing.vercel.app/commercial-roofing.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talamantes-roofing.vercel.app/commercial-roofing.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://talamantes-roofing.vercel.app/es/commercial-roofing.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talamantes-roofing.vercel.app/commercial-roofing.html" />
+  </url>
+  <url>
+    <loc>https://talamantes-roofing.vercel.app/es/commercial-roofing.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talamantes-roofing.vercel.app/commercial-roofing.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://talamantes-roofing.vercel.app/es/commercial-roofing.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talamantes-roofing.vercel.app/commercial-roofing.html" />
   </url>
 </urlset>

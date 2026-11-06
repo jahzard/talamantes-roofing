@@ -64,11 +64,11 @@ class SpanishPage(HTMLParser):
         if tag == "html":
             values["lang"] = "es"
         if tag == "link" and values.get("rel") == "canonical":
-            suffix = "/es/" if self.filename == "index.html" else "/es/past-work.html"
+            suffix = "/es/" if self.filename == "index.html" else "/es/" + self.filename
             values["href"] = ORIGIN + suffix
         if switch:
             values.update({
-                "href": "../" if self.filename == "index.html" else "../past-work.html",
+                "href": "../" if self.filename == "index.html" else "../" + self.filename,
                 "lang": "en", "hreflang": "en", "aria-label": "View this page in English",
             })
         rendered = "".join(
@@ -111,7 +111,8 @@ class SpanishPage(HTMLParser):
 
 def generate():
     (ROOT / "es").mkdir(exist_ok=True)
-    for filename in ("index.html", "past-work.html"):
+    services = json.loads((ROOT / "tools/services.json").read_text())
+    for filename in ["index.html", "past-work.html"] + [s["slug"] + ".html" for s in services]:
         parser = SpanishPage(filename)
         parser.feed((ROOT / filename).read_text())
         parser.close()

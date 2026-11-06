@@ -2,6 +2,7 @@
 """Check crawlable locale pages, reciprocal alternates, and local asset links."""
 
 from html.parser import HTMLParser
+import json
 from pathlib import Path
 from urllib.parse import unquote, urljoin, urlsplit
 from urllib.robotparser import RobotFileParser
@@ -15,6 +16,10 @@ PAGES = {
     "/es/": ("es/index.html", "es", "/"),
     "/es/past-work.html": ("es/past-work.html", "es", "/past-work.html"),
 }
+for service in json.loads((ROOT / "tools/services.json").read_text()):
+    slug = service["slug"] + ".html"
+    PAGES["/" + slug] = (slug, "en", "/es/" + slug)
+    PAGES["/es/" + slug] = ("es/" + slug, "es", "/" + slug)
 
 
 class Document(HTMLParser):
@@ -81,8 +86,22 @@ def check():
     for url, doc in docs.items():
         directives = [a.get("content", "") for tag, a in doc.tags if tag == "meta" and a.get("name", "").lower() in {"robots", "googlebot"}]
         assert not any("noindex" in d.lower() or "none" in d.lower() for d in directives), url
-    print(f"PASS: 4 static language pages, reciprocal language links, and {checked} local links/assets.")
-    print("PASS: sitemap lists all 4 canonical pages; robots.txt permits Googlebot and advertises the sitemap.")
+    services = json.loads((ROOT / "tools/services.json").read_text())
+    for service in services:
+        for locale, lang in [("", 0), ("/es", 1)]:
+            url = locale + "/" + service["slug"] + ".html"
+            doc = docs[url]
+            content = " ".join(" ".join(doc.text).split())
+            for key in ("heading", "lead", "intro", "overviewTitle", "overview", "heroCaption"):
+                assert " ".join(service[key][lang].split()) in content, (url, key)
+            for section in ("features", "process", "faqs"):
+                for pair in service[section]:
+                    for text in pair:
+                        assert " ".join(text[lang].split()) in content, (url, text[lang])
+            assert sum(t == "details" for t, _ in doc.tags) == 3, url
+            assert any(t == "a" and a.get("href") == service["slug"] + ".html" for t, a in docs[locale + "/"].tags), url
+    print(f"PASS: {len(PAGES)} static language pages, reciprocal language links, and {checked} local links/assets.")
+    print(f"PASS: sitemap lists all {len(PAGES)} canonical pages; robots.txt permits Googlebot and advertises the sitemap.")
 
 
 if __name__ == "__main__":
