@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://talamantes-roofing.vercel.app/sitemap.xml

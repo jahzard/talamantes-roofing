@@ -4,6 +4,8 @@
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urljoin, urlsplit
+from urllib.robotparser import RobotFileParser
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://talamantes-roofing.vercel.app"
@@ -68,7 +70,19 @@ def check():
                 checked += 1
     script = (ROOT / "script.js").read_text()
     assert "localStorage" not in script and "setLanguage(" not in script
+    sitemap = ET.parse(ROOT / "sitemap.xml")
+    urls = [element.text for element in sitemap.findall("{*}url/{*}loc")]
+    assert len(urls) == len(PAGES) and set(urls) == {ORIGIN + url for url in PAGES}
+    robots = RobotFileParser()
+    robots.parse((ROOT / "robots.txt").read_text().splitlines())
+    assert robots.site_maps() == [ORIGIN + "/sitemap.xml"]
+    for url in urls:
+        assert robots.can_fetch("Googlebot", url), url
+    for url, doc in docs.items():
+        directives = [a.get("content", "") for tag, a in doc.tags if tag == "meta" and a.get("name", "").lower() in {"robots", "googlebot"}]
+        assert not any("noindex" in d.lower() or "none" in d.lower() for d in directives), url
     print(f"PASS: 4 static language pages, reciprocal language links, and {checked} local links/assets.")
+    print("PASS: sitemap lists all 4 canonical pages; robots.txt permits Googlebot and advertises the sitemap.")
 
 
 if __name__ == "__main__":

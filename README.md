@@ -20,6 +20,8 @@ For a local server, run `python3 -m http.server 8000 --bind 127.0.0.1` from this
 - `gallery.js`: photo viewer, keyboard controls, and video playback management.
 - `styles.css`: layout, colors, and responsive styles.
 - `script.js`: mobile navigation and estimate dialog.
+- `sitemap.xml`: all four canonical English and Spanish page URLs.
+- `robots.txt`: allows crawling and points search engines to the sitemap.
 - `es/index.html` and `es/past-work.html`: complete Spanish pages, with shared styles, scripts, and assets.
 - `tools/generate-spanish.py`: generates the Spanish pages from the English HTML and the translation dictionary in `script.js`. After changing the English pages or translations, run `python3 tools/generate-spanish.py`, then `python3 tools/check-localization.py`, and commit the generated HTML too. No build step is needed for hosting.
 - `assets/`: generated homepage roof photographs and favicon. The homepage hero and storm images are illustrative.
@@ -30,5 +32,7 @@ For a local server, run `python3 -m http.server 8000 --bind 127.0.0.1` from this
 This is a buildless static site configured for Vercel. The repository root is the site root, with no installation or build step required. The Free Estimate buttons use telephone contact; an online submission form would need a real delivery destination and service.
 
 English URLs are `/` and `/past-work.html`; Spanish URLs are `/es/` and `/es/past-work.html`. Each page has its own canonical URL and reciprocal `en`, `es`, and `x-default` alternate links. The generator and checks are excluded from Vercel uploads.
+
+For Google Search Console, use the URL-prefix property `https://talamantes-roofing.vercel.app/`, verify ownership with the HTML file or tag supplied by Google, and submit `sitemap.xml`. Retain the verification file or tag in future deployments. Search Console verification and sitemap submission require the managing Google account; publishing a sitemap alone does not confirm submission or indexing.
 
 The published testimonial section contains the two customer reviews supplied by the owner. The supplied California licensing and inspection guarantee copy is retained. The original approved hero image is retained.
